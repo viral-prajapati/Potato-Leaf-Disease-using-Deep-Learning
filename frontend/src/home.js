@@ -156,13 +156,11 @@ export const ImageUpload = () => {
     if (image) {
       let formData = new FormData();
       formData.append("file", selectedFile);
-      console.log("before await")
       let res = await axios({
         method: "post",
         url: "http://localhost:8000/predict",
         data: formData,
       });
-      console.log("after await", res)
       if (res.status === 200) {
         setData(res.data);
       }
