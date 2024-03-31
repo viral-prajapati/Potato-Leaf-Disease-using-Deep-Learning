@@ -8,9 +8,9 @@ import Container from "@material-ui/core/Container";
 import React from "react";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
-import { Paper, CardActionArea, CardMedia, Grid, TableContainer, Table, TableBody, TableHead, TableRow, TableCell, Button, CircularProgress } from "@material-ui/core";
+import { Paper, CardActionArea, CardMedia, Grid, TableContainer, Table, TableBody, TableHead, TableRow, TableCell, Button, CircularProgress, Hidden } from "@material-ui/core";
 import cblogo from "./cblogo.PNG";
-import image from "./bg.png";
+import image from "./bg.jpg";
 import { DropzoneArea } from 'material-ui-dropzone';
 import { common } from '@material-ui/core/colors';
 import Clear from '@material-ui/icons/Clear';
@@ -36,7 +36,7 @@ const useStyles = makeStyles((theme) => ({
   clearButton: {
     width: "-webkit-fill-available",
     borderRadius: "15px",
-    padding: "15px 22px",
+    padding: "5px 22px",
     color: "#000000a6",
     fontSize: "20px",
     fontWeight: 900,
@@ -55,7 +55,9 @@ const useStyles = makeStyles((theme) => ({
   },
   gridContainer: {
     justifyContent: "center",
-    padding: "4em 1em 0 1em",
+    padding: "0em 1em 0 1em",
+    // maxWidth: "20% 40%",
+    // maxHeight: "50%"
   },
   mainContainer: {
     backgroundImage: `url(${image})`,
@@ -135,12 +137,12 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'center',
   },
   appbar: {
-    background: '#be6a77',
+    background: '#000000c9',
     boxShadow: 'none',
     color: 'white'
   },
   loader: {
-    color: '#be6a77 !important',
+    color: 'lightblue !important',
   }
 }));
 export const ImageUpload = () => {
@@ -213,10 +215,10 @@ export const ImageUpload = () => {
       <AppBar position="static" className={classes.appbar}>
         <Toolbar>
           <Typography className={classes.title} variant="h6" noWrap>
-            CodeBasics: Potato Disease Classification
+          Deep Learning for efficient Potato Disease Classification
           </Typography>
           <div className={classes.grow} />
-          <Avatar src={cblogo}></Avatar>
+          {/* <Avatar src={cblogo}></Avatar> */}
         </Toolbar>
       </AppBar>
       <Container maxWidth={false} className={classes.mainContainer} disableGutters={true}>
@@ -242,7 +244,7 @@ export const ImageUpload = () => {
               {!image && <CardContent className={classes.content}>
                 <DropzoneArea
                   acceptedFiles={['image/*']}
-                  dropzoneText={"Drag and drop an image of a potato plant leaf to process"}
+                  dropzoneText={"Drag & drop an Image of a Potato Plant Leaf to Predict"}
                   onChange={onSelectFile}
                 />
               </CardContent>}
