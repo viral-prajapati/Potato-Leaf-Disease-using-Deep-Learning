@@ -1,3 +1,4 @@
+/* Resetting default margin, setting font family, and improving font rendering */
 body {
 	margin: 0;
 	font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -8,14 +9,17 @@ body {
 	overflow: hidden;
 }
 
+/* Setting font family for code blocks */
 code {
 	font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
 		monospace;
 }
 
+/* Styling DropzoneArea component from Material-UI */
 .MuiDropzoneArea-root {
 	background-color: transparent !important;
 }
+/* Styling text and icon color for DropzoneArea */
 .MuiDropzoneArea-text, .MuiDropzoneArea-icon {
-  color: white !important;
+  color: white !important;/* Setting text and icon color to white */
 }

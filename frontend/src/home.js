@@ -17,7 +17,7 @@ import Clear from '@material-ui/icons/Clear';
 
 
 
-
+// Custom button with color override
 const ColorButton = withStyles((theme) => ({
   root: {
     color: theme.palette.getContrastText(common.white),
@@ -29,6 +29,7 @@ const ColorButton = withStyles((theme) => ({
 }))(Button);
 const axios = require("axios").default;
 
+// Define CSS styles using makeStyles hook
 const useStyles = makeStyles((theme) => ({
   grow: {
     flexGrow: 1,
@@ -146,6 +147,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 export const ImageUpload = () => {
+  // State variables for selected file, preview image, prediction data, image flag, loading flag, and confidence
   const classes = useStyles();
   const [selectedFile, setSelectedFile] = useState();
   const [preview, setPreview] = useState();
@@ -154,15 +156,18 @@ export const ImageUpload = () => {
   const [isLoading, setIsloading] = useState(false);
   let confidence = 0;
 
+  // Function to send file to backend for prediction
   const sendFile = async () => {
     if (image) {
       let formData = new FormData();
       formData.append("file", selectedFile);
+      // Send POST request to backend API for prediction
       let res = await axios({
         method: "post",
         url: "http://localhost:8000/predict",
         data: formData,
       });
+      // If response is successful, update prediction data
       if (res.status === 200) {
         setData(res.data);
       }
@@ -170,6 +175,7 @@ export const ImageUpload = () => {
     }
   }
 
+  // Function to clear selected file and prediction data
   const clearData = () => {
     setData(null);
     setImage(false);
@@ -177,6 +183,7 @@ export const ImageUpload = () => {
     setPreview(null);
   };
 
+  // Effect hook to update preview when selected file changes
   useEffect(() => {
     if (!selectedFile) {
       setPreview(undefined);
@@ -186,6 +193,7 @@ export const ImageUpload = () => {
     setPreview(objectUrl);
   }, [selectedFile]);
 
+  // Effect hook to send file for prediction when preview changes
   useEffect(() => {
     if (!preview) {
       return;
@@ -194,6 +202,7 @@ export const ImageUpload = () => {
     sendFile();
   }, [preview]);
 
+  // Function to handle file selection
   const onSelectFile = (files) => {
     if (!files || files.length === 0) {
       setSelectedFile(undefined);
@@ -201,6 +210,7 @@ export const ImageUpload = () => {
       setData(undefined);
       return;
     }
+    // Update selected file and image flag
     setSelectedFile(files[0]);
     setData(undefined);
     setImage(true);
